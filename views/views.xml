@@ -17,6 +17,7 @@
                   <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="responsible_id"/>
                         </group>
                         <notebook>
                             <page string="Description">
@@ -36,6 +37,18 @@
                 -->
             </field>
     </record>
+
+              <!-- override the automatically generated list view for courses -->
+        <record model="ir.ui.view" id="course_tree_view">
+            <field name="name">course.tree</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <tree string="Course Tree">
+                    <field name="name"/>
+                    <field name="responsible_id"/>
+                </tree>
+            </field>
+        </record>
     <!-- explicit list view definition -->
     <record model="ir.actions.act_window" id="course_list_action">
             <field name="name">Courses</field>
@@ -66,13 +79,31 @@
                 <form string="Session Form">
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="start_date"/>
-                            <field name="duration"/>
-                            <field name="seats"/>
+                            <group string="General">
+                                <field name="course_id"/>
+                                <field name="name"/>
+                                <field name="instructor_id"/>
+                            </group>
+                            <group string="Schedule">
+                                <field name="start_date"/>
+                                <field name="duration"/>
+                                <field name="seats"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+              <!-- session tree/list view -->
+        <record model="ir.ui.view" id="session_tree_view">
+            <field name="name">session.tree</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <tree string="Session Tree">
+                    <field name="name"/>
+                    <field name="course_id"/>
+                </tree>
             </field>
         </record>
 
