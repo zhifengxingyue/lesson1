@@ -124,6 +124,7 @@
         <menuitem id="session_menu" name="Sessions"
                   parent="openacademy_menu"
                   action="session_list_action"/>
+
     <!--
     <record model="ir.ui.view" id="lesson1.list">
       <field name="name">lesson1 list</field>
